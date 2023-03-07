@@ -104,6 +104,23 @@ class UserController {
       });
     }
   }
+
+  static async getAllCustomer(req, res) {
+    try {
+      const customerList = await User.findAll({
+        where: {
+          user_type: "customer",
+        },
+      });
+      res.status(200).send(customerList);
+    } catch (err) {
+      res.status(500).send({
+        status: "error",
+        message: "Server is working wrong!",
+      });
+    }
+  }
+
   static async createCustomer(req, res) {
     try {
       const {
@@ -120,8 +137,6 @@ class UserController {
       const foundCustomer = await User.findOne({
         where: {
           user_code,
-          user_phone,
-          user_email,
           user_name,
         },
       });
