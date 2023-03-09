@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { Users } = require("../models");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
@@ -19,7 +19,7 @@ class AuthController {
     try {
       const { name, phone, email, password, type } = req.body;
       // * 1: Check user is already exists or not
-      const oldUser = await User.findOne({
+      const oldUser = await Users.findOne({
         where: {
           user_email: email,
         },
@@ -35,7 +35,7 @@ class AuthController {
           user_email: email,
           user_password: password,
         };
-        await User.create(newUser);
+        await Users.create(newUser);
         res.status(200).send({
           status: "success",
           data: newUser,
@@ -49,7 +49,7 @@ class AuthController {
     try {
       const { email, password } = req.body;
       // * Check user'email,password is correct or not
-      const foundUser = await User.findOne({
+      const foundUser = await Users.findOne({
         where: {
           user_email: email,
           user_password: password,

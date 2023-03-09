@@ -1,9 +1,9 @@
-const { User } = require("../models");
+const { Users } = require("../models");
 
 class UserController {
   static async getAllUserDB(req, res) {
     try {
-      const userList = await User.findAll();
+      const userList = await Users.findAll();
       res.status(200).send(userList);
     } catch (err) {
       res.status(500).send("Server is working wrong!");
@@ -13,7 +13,7 @@ class UserController {
     try {
       const { id } = req.params;
 
-      const foundUser = await User.findOne({
+      const foundUser = await Users.findOne({
         where: {
           id,
         },
@@ -37,7 +37,7 @@ class UserController {
   static async deleteUserByID(req, res) {
     try {
       const { id } = req.params;
-      const foundUser = await User.findOne({
+      const foundUser = await Users.findOne({
         where: {
           id,
         },
@@ -48,7 +48,7 @@ class UserController {
             id,
           },
         });
-        const userListUpdate = await User.findAll();
+        const userListUpdate = await Users.findAll();
         res
           .status(201)
           .send(
@@ -78,7 +78,7 @@ class UserController {
           },
         });
 
-        const userListUpdate = await User.findAll();
+        const userListUpdate = await Users.findAll();
 
         res.status(201).send({
           status: 201,
@@ -107,7 +107,7 @@ class UserController {
 
   static async getAllCustomer(req, res) {
     try {
-      const customerList = await User.findAll({
+      const customerList = await Users.findAll({
         where: {
           user_type: "customer",
         },
@@ -134,10 +134,9 @@ class UserController {
         user_address,
       } = req.body;
 
-      const foundCustomer = await User.findOne({
+      const foundCustomer = await Users.findOne({
         where: {
           user_code,
-          user_name,
         },
       });
 
@@ -161,7 +160,7 @@ class UserController {
           user_commune,
           user_address,
         };
-        const newUserCreated = await User.create(newCustomer);
+        const newUserCreated = await Users.create(newCustomer);
         res.status(201).send({
           status: 201,
           message: "Create new user successfully !",

@@ -1,44 +1,38 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable("Shippings", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      user_type: {
+      order_id: {
         type: Sequelize.STRING,
       },
-      user_name: {
+      shipping_unit: {
         type: Sequelize.STRING,
       },
-      user_code: {
+      shipping_option: {
         type: Sequelize.STRING,
       },
-      user_group: {
+      shipping_order_product_subTotal_weight: {
         type: Sequelize.STRING,
       },
-      user_phone: {
+      shipping_order_product_length: {
         type: Sequelize.STRING,
       },
-      user_email: {
+      shipping_order_product_width: {
         type: Sequelize.STRING,
       },
-      user_password: {
+      shipping_order_product_height: {
         type: Sequelize.STRING,
       },
-      user_region: {
+      shipping_order_delivery_note: {
         type: Sequelize.STRING,
       },
-      user_commune: {
-        type: Sequelize.STRING,
-      },
-      user_address: {
-        type: Sequelize.STRING,
-      },
-      user_receipt_address: {
+      shipping_order_note: {
         type: Sequelize.STRING,
       },
       createdAt: {
@@ -52,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Users");
+    await queryInterface.dropTable("Shippings");
   },
 };
