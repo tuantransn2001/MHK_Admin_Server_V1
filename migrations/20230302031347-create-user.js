@@ -38,7 +38,7 @@ module.exports = {
       user_receipt_address: {
         type: Sequelize.STRING,
       },
-      isDisable: {
+      isDelete: {
         type: Sequelize.BOOLEAN,
       },
       createdAt: {

@@ -3,7 +3,11 @@ const { Users } = require("../models");
 class UserController {
   static async getAllUserDB(req, res) {
     try {
-      const userList = await Users.findAll();
+      const userList = await Users.findAll({
+        where: {
+          isDelete: null,
+        },
+      });
       res.status(200).send(userList);
     } catch (err) {
       res.status(500).send("Server is working wrong!");
@@ -16,6 +20,7 @@ class UserController {
       const foundUser = await Users.findOne({
         where: {
           id,
+          isDelete: null,
         },
       });
 
@@ -43,16 +48,10 @@ class UserController {
         },
       });
       if (foundUser) {
-        await Users.update(
-          {
-            isDisable: true,
-          },
-          {
-            where: {
-              id,
-            },
-          }
-        );
+        await foundUser.set({
+          isDelete: true,
+        });
+        await foundUser.save();
         res.status(201).send({
           status: 201,
           message: `Delete user successfully!`,
@@ -73,7 +72,6 @@ class UserController {
       const { type } = req.body;
 
       if (type) {
-        console.log("Admin was enter user type");
         await Users.destroy({
           where: {
             user_type: type,
@@ -112,6 +110,7 @@ class UserController {
       const customerList = await Users.findAll({
         where: {
           user_type: "customer",
+          isDelete: null,
         },
       });
       res.status(200).send(customerList);

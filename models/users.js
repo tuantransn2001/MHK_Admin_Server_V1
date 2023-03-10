@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       user_receipt_address: {
         type: DataTypes.STRING,
       },
-      isDisable: {
+      isDelete: {
         type: DataTypes.BOOLEAN,
       },
     },
