@@ -14,6 +14,9 @@ module.exports = {
       agency_branch_product_item_id: {
         type: Sequelize.INTEGER,
       },
+      product_name: {
+        type: Sequelize.STRING,
+      },
       product_image: {
         type: Sequelize.INTEGER,
       },
@@ -57,6 +60,9 @@ module.exports = {
         type: Sequelize.STRING,
       },
       product_wholesale_price: {
+        type: Sequelize.STRING,
+      },
+      product_import_price: {
         type: Sequelize.STRING,
       },
       product_import_shopee_price: {

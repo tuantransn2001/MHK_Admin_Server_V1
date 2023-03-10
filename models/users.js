@@ -35,10 +35,6 @@ module.exports = (sequelize, DataTypes) => {
       user_code: {
         type: DataTypes.STRING,
       },
-      // ? Nhóm khách hàng : VIP, BANBUON , BANLE
-      user_group: {
-        type: DataTypes.STRING,
-      },
       user_phone: {
         type: DataTypes.STRING,
       },
@@ -63,6 +59,9 @@ module.exports = (sequelize, DataTypes) => {
       // ? Mô tả địa chỉ nhận hàng
       user_receipt_address: {
         type: DataTypes.STRING,
+      },
+      isDisable: {
+        type: DataTypes.BOOLEAN,
       },
     },
     {

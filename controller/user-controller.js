@@ -43,19 +43,20 @@ class UserController {
         },
       });
       if (foundUser) {
-        await User.destroy({
-          where: {
-            id,
+        await Users.update(
+          {
+            isDisable: true,
           },
+          {
+            where: {
+              id,
+            },
+          }
+        );
+        res.status(201).send({
+          status: 201,
+          message: `Delete user successfully!`,
         });
-        const userListUpdate = await Users.findAll();
-        res
-          .status(201)
-          .send(
-            `Delete success user with id ${id} - User list update - ${JSON.stringify(
-              userListUpdate
-            )} `
-          );
       } else {
         res.status(404).send("User Not Found");
       }
@@ -63,6 +64,7 @@ class UserController {
       res.status(500).send({
         status: "error",
         message: "User is working wrong!",
+        error: err,
       });
     }
   }
@@ -72,7 +74,7 @@ class UserController {
 
       if (type) {
         console.log("Admin was enter user type");
-        await User.destroy({
+        await Users.destroy({
           where: {
             user_type: type,
           },
@@ -88,7 +90,7 @@ class UserController {
       } else {
         console.log("Admin wasn't enter user type");
 
-        await User.destroy({
+        await Users.destroy({
           truncate: true,
         });
 
@@ -126,7 +128,6 @@ class UserController {
       const {
         user_name,
         user_code,
-        user_group,
         user_phone,
         user_email,
         user_region,
@@ -153,7 +154,6 @@ class UserController {
           user_type: "customer",
           user_name,
           user_code,
-          user_group,
           user_phone,
           user_email,
           user_region,

@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
       agency_branch_product_item_id: {
         type: DataTypes.NUMBER,
       },
+      product_name: {
+        type: DataTypes.STRING,
+      },
       product_image: {
         type: DataTypes.INTEGER,
       },
@@ -70,6 +73,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       product_wholesale_price: {
+        type: DataTypes.STRING,
+      },
+      product_import_price: {
         type: DataTypes.STRING,
       },
       product_import_shopee_price: {

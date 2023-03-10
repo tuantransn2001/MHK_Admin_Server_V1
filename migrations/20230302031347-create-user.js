@@ -17,9 +17,6 @@ module.exports = {
       user_code: {
         type: Sequelize.STRING,
       },
-      user_group: {
-        type: Sequelize.STRING,
-      },
       user_phone: {
         type: Sequelize.STRING,
       },
@@ -40,6 +37,9 @@ module.exports = {
       },
       user_receipt_address: {
         type: Sequelize.STRING,
+      },
+      isDisable: {
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
