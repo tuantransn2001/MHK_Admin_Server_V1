@@ -67,44 +67,6 @@ class UserController {
       });
     }
   }
-  static async deleteAllUser(req, res) {
-    try {
-      const { type } = req.body;
-
-      if (type) {
-        await Users.destroy({
-          where: {
-            user_type: type,
-          },
-        });
-
-        const userListUpdate = await Users.findAll();
-
-        res.status(201).send({
-          status: 201,
-          message: `Delete success users with type : ${type}`,
-          data: userListUpdate,
-        });
-      } else {
-        console.log("Admin wasn't enter user type");
-
-        await Users.destroy({
-          truncate: true,
-        });
-
-        res.status(201).send({
-          status: 201,
-          message: `Delete success all users`,
-        });
-      }
-    } catch (err) {
-      res.status(500).send({
-        status: "error",
-        message: "Server is working wrong!",
-      });
-    }
-  }
-
   static async getAllCustomer(req, res) {
     try {
       const customerList = await Users.findAll({

@@ -92,17 +92,6 @@ class ProductController {
       res.status(500).send("Server is working wrong!");
     }
   }
-  static async deleteAllProduct(req, res) {
-    try {
-      await Users.destroy({
-        truncate: true,
-      });
-
-      res.status(201).send("Delete all product successfully!");
-    } catch (err) {
-      res.status(500).send("Server is working wrong!");
-    }
-  }
 }
 
 module.exports = ProductController;

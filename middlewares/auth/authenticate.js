@@ -1,6 +1,6 @@
 require("dotenv").config();
-
 const jwt = require("jsonwebtoken");
+
 const authenticate = async (req, res, next) => {
   const JWT_TOKEN_SECRET_KEY = process.env.JWT_TOKEN_SECRET_KEY;
   try {
@@ -12,7 +12,10 @@ const authenticate = async (req, res, next) => {
       res.status(404).send("In-Valid Token");
     }
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).send({
+      status: "fail",
+      message: "You are not logged in!",
+    });
   }
 };
 module.exports = { authenticate };
